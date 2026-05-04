@@ -12,6 +12,8 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <fstream>
+#include <cstring>
 
 //------------------------------------------------------ Include personnel
 #include "Data.h"
@@ -58,5 +60,17 @@ Data::~Data ( )
 
 //----------------------------------------------------- Méthodes protégées
 void Data::loadData(){
+    // Lecture de sensors.csv et measurements.csv
+    ifstream f_sensors("../dataset/sensors.csv");
+    //static_assert((f_sensors.is_open()==1),"sensors.csv not found");
+    ifstream f_measurements("../dataset/measurements.csv");
+    //assert(f_measurements.is_open(),"measurements.csv not found");
+
+    while (!f_measurements.eof())
+
     
+
+
+    sensors.push_back();
+
 }
