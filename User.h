@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string>
 
-using namespace std;
-
 // Class representing a user with authentication capabilities
 class User{
 
@@ -20,9 +18,9 @@ class User{
 
     private:
         // User's email address
-        string email;
+        std::string email;
         // User's password for authentication
-        string password;
+        std::string password;
 };
 
 #endif

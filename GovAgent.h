@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include <string>
 
-using namespace std;
-
 // Class representing a GovAgent inheriting from User
 class GovAgent : public User{
 
@@ -18,7 +16,7 @@ class GovAgent : public User{
 
     private:
         // ID of the Governement Agency
-        string agencyId;
+        std::string agencyId;
 };
 
 #endif

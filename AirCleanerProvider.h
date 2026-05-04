@@ -1,12 +1,11 @@
 #ifndef AIRCLEANERPROVIDER_H
 #define AIRCLEANERPROVIDER_H
 #include "User.h"
-#include "AirCleaner.h"
 #include <stdlib.h>
 #include <string>
 #include <vector>
 
-using namespace std;
+class AirCleaner;
 
 class AirCleanerProvider : public User{
 
@@ -21,7 +20,7 @@ class AirCleanerProvider : public User{
         std::vector<AirCleaner*> getCleaners();
 
     private:
-        string providerId;                      // Unique provider identifier
+        std::string providerId;                      // Unique provider identifier
         std::vector<AirCleaner*> cleaners;      // List of managed air cleaners
 };
 

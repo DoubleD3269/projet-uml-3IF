@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string>
 
-using namespace std;
-
 class AirCleanerProvider;
 
 // Represents an air cleaner device with location and operational timeframe
@@ -21,7 +19,7 @@ class AirCleaner{
         long getEnd();
 
     private:
-        string cleanerID;           // Unique identifier for the cleaner
+        std::string cleanerID;           // Unique identifier for the cleaner
         double longitude;           // Geographic longitude coordinate
         double latitude;            // Geographic latitude coordinate
         long start;                 // Operation start time (timestamp)
