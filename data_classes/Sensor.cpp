@@ -5,7 +5,7 @@ using namespace std;
 Sensor::Sensor ( string id, double lon, double lat, vector<Measurement*> measurements )
 {
     this->measurements = measurements;
-    this->attributeID = id;
+    this->sensorID = id;
     this->longitude = lon;
     this->latitude = lat;
     this->isReliable = true;
@@ -13,27 +13,27 @@ Sensor::Sensor ( string id, double lon, double lat, vector<Measurement*> measure
 
 Sensor::~Sensor() {}
 
-Sensor::getLongitude () 
+double Sensor::getLongitude () 
 {
     return longitude;
 }
 
-Sensor::getLatitude () 
+double Sensor::getLatitude () 
 {
     return latitude;
 }
 
-Sensor::getID()
+string Sensor::getID()
 {
     return sensorID;
 }
 
-Sensor::getReliability () 
+bool Sensor::getReliability () 
 {
     return isReliable;
 }
 
-Sensor::setReliability( bool reliability )
+void Sensor::setReliability( bool reliability )
 {
     this->isReliable = reliability;
 }
