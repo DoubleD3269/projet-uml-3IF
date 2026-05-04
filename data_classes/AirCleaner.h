@@ -9,9 +9,10 @@ class AirCleanerProvider;
 class AirCleaner{
     public:
         AirCleaner();
+        AirCleaner(std::string cleanerID, double longitude, double latitude, long startTime, long endTime, AirCleanerProvider* provider);
         ~AirCleaner();
 
-        // Returns geographic coordinates (longitude, latitude)
+        // Returns geographic coordinates (longitude, latitude) as an std::pair
         std::pair<double, double> getCoords();
         // Returns cleaner operation start time
         long getStart();
@@ -22,9 +23,9 @@ class AirCleaner{
         std::string cleanerID;           // Unique identifier for the cleaner
         double longitude;           // Geographic longitude coordinate
         double latitude;            // Geographic latitude coordinate
-        long start;                 // Operation start time (timestamp)
-        long end;                   // Operation end time (timestamp)
-        AirCleanerProvider& provider; // Reference to the provider managing this cleaner
+        long startTime;                 // Operation start time (timestamp)
+        long endTime;                   // Operation end time (timestamp)
+        AirCleanerProvider* provider; // Reference to the provider managing this cleaner
 };
 
 #endif
