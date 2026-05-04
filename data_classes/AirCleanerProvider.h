@@ -13,6 +13,8 @@ class AirCleanerProvider : public User{
         // Initializes a new provider
         AirCleanerProvider();
 
+        AirCleanerProvider(std::string providerId, std::vector<AirCleaner*> cleaners);
+
         // Cleans up resources
         ~AirCleanerProvider();
 
