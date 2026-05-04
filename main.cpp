@@ -1,4 +1,6 @@
 #include <iostream>
+#include "data_classes/Data.h"
+#include "data_classes/Sensor.h"
 
 using std namespace;
 
@@ -14,6 +16,7 @@ int main() {
     // Main menu
     while (true)
     {
+        // All functions are available to every user
         cout << "1: Get statistics" << endl;
         cout << "Private user\n2: Add a private sensor" << endl;
         cout << "Agency member\n3: Classify a sensor as unreliable" << endl;
@@ -21,7 +24,7 @@ int main() {
         cin >> choice;
 
         if (choix == 0) {
-            cout << "Au revoir !" << endl;
+            cout << "Goodbye." << endl;
             break;
         }
 
