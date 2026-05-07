@@ -13,27 +13,27 @@ Measurement::Measurement (string timestamp, double valueO3, double valueSO2, dou
 
 Measurement::~Measurement() {}
 
-double Measurement::getO3()
+double Measurement::getO3() const
 {
     return valueO3;
 }
 
-double Measurement::getSO2()
+double Measurement::getSO2() const
 {
     return valueSO2;
 }
 
-double Measurement::getNO2()
+double Measurement::getNO2() const
 {
     return valueNO2;
 }
 
-double Measurement::getPM1O()
+double Measurement::getPM1O() const
 {
     return valuePM10;
 }
 
-string Measurement::getTimestamp()
+string Measurement::getTimestamp() const
 {
     return timestamp;
 }

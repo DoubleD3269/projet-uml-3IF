@@ -25,16 +25,16 @@ class Sensor
 
 public:
     //----------------------------------------------------- Méthodes publiques
-        vector<Measurement*>* getMeasurements();
+        vector<Measurement*>* getMeasurements() const;
         // Return the pointer of the vector
         
-        string getID();
+        string getID() const;
 
-        double getLongitude();
+        double getLongitude() const;
         
-        double getLatitude();
+        double getLatitude() const;
 
-        bool getReliability();
+        bool getReliability() const;
 
         void setReliability( bool reliability );
 

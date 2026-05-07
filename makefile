@@ -19,6 +19,8 @@ $(OUT): $(OBJ) ./main.o
 	mkdir -p build
 	$(CC) $(OBJ) ./main.o $(CFLAGS) $(DBGFLAG) -o $(OUT)
 
+# To compile a single .cpp : g++ -c -Iincludes -ansi -pedantic -std=c++11 file.cpp
+
 %.o: %.cpp $(HEADERS)
 	$(CC) $(CFLAGS) $(DBGFLAG) -c $< -o $@
 

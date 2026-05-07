@@ -12,6 +12,7 @@
 //-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
+#include <vector>
 #include <fstream>
 #include <cstring>
 
@@ -71,6 +72,6 @@ void Data::loadData(){
     
 
 
-    sensors.push_back();
+    sensors.push_back(); // Insert at the end efficiently
 
 }
