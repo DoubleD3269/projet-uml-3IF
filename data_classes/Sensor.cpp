@@ -13,6 +13,11 @@ Sensor::Sensor ( string id, double lon, double lat, vector<Measurement*> measure
 
 Sensor::~Sensor() {}
 
+vector<Measurement*>* getMeasurements()
+{
+    return &measurements;
+}
+
 double Sensor::getLongitude () 
 {
     return longitude;

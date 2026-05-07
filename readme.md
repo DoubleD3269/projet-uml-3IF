@@ -1,8 +1,8 @@
 TODO :
 - Objets
   - [ ]Data
-  - [ ]Sensor
-  - [ ]Measurements
+  - [X]Sensor
+  - [X]Measurements
   - [ ]Air cleaner
 - [ ]main (interface)
 - [ ]Users

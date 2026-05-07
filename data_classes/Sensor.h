@@ -25,7 +25,8 @@ class Sensor
 
 public:
     //----------------------------------------------------- Méthodes publiques
-        Measurement* getMeasurements();
+        vector<Measurement*>* getMeasurements();
+        // Return the pointer of the vector
         
         string getID();
 
