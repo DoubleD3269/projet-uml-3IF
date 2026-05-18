@@ -14,7 +14,10 @@ using namespace std;
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <cstring>
+#include <string>
+#include <sstream>
+#include "Sensor.h"
+#include "Measurement.h"
 
 //------------------------------------------------------ Include personnel
 #include "Data.h"
@@ -63,9 +66,96 @@ void Data::loadData()
     ifstream f_measurements("../dataset/measurements.csv");
     // assert(f_measurements.is_open(),"measurements.csv not found");
 
-    while (!f_measurements.eof())
+    string sensor_s;
+    string measurement_s;
 
-        sensors.push_back(); // Insert at the end efficiently
+    while (getline (f_sensors, sensor_s)) {
+        std::stringstream ss(sensor_s);
+        string longitude_s;
+        string latitude_s;
+        string id;
+
+        getline(ss, id, ';');
+        getline(ss, longitude_s, ';');
+        getline(ss, latitude_s, ';');
+
+        vector<Measurement*> measurements;
+
+        Sensor* sensor = new Sensor(id, stod(longitude_s), stod(latitude_s), measurements);
+
+        sensors.insert({id, sensor});
+
+    }
+
+    while (getline (f_measurements, measurement_s)) {
+        double valueO3 = -1;
+        double valueSO2 = -1;
+        double valueNO2 = -1;
+        double valuePM10 = -1;
+
+        std::stringstream ss(measurement_s);
+        string time_s;
+        string sensor_id;
+        string measurement_type;
+        string value_s;
+
+        getline(ss, time_s, ';');
+        getline(ss, sensor_id, ';');
+        getline(ss, measurement_type, ';');
+        getline(ss, value_s, ';');
+
+        if (measurement_type == "O3"){
+                valueO3 = stod(value_s);
+
+            }
+            else if (measurement_type == "NO2"){
+                valueNO2 = stod(value_s);
+
+            }
+            else if (measurement_type == "SO2"){
+                valueSO2 = stod(value_s);
+
+            }
+            else if (measurement_type == "PM10"){
+                valuePM10 = stod(value_s);
+            }
+
+        for (int i =0;i<3;i++){
+
+            if(getline (f_measurements, measurement_s)){
+
+                std::stringstream ss(measurement_s);
+
+                getline(ss, time_s, ';');
+                getline(ss, sensor_id, ';');
+                getline(ss, measurement_type, ';');
+                getline(ss, value_s, ';');
+
+            }
+
+            if (measurement_type == "O3"){
+                valueO3 = stod(value_s);
+
+            }
+            else if (measurement_type == "NO2"){
+                valueNO2 = stod(value_s);
+
+            }
+            else if (measurement_type == "SO2"){
+                valueSO2 = stod(value_s);
+
+            }
+            else if (measurement_type == "PM10"){
+                valuePM10 = stod(value_s);
+            }
+        }
+
+        Measurement* measurement = new Measurement(time_s,valueO3,valueSO2,valueNO2,valuePM10);
+
+
+        sensors[sensor_id] -> addMeasurement(measurement);
+
+    }
 }
 
 vector<Sensor> Data ::getSensors()

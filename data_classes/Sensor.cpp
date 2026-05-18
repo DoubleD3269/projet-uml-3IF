@@ -1,6 +1,5 @@
 #include "Sensor.h"
 #include <iostream>
-#include <vector>
 using namespace std;
 
 Sensor::Sensor ( string id, double lon, double lat, vector<Measurement*> measurements )
@@ -14,27 +13,22 @@ Sensor::Sensor ( string id, double lon, double lat, vector<Measurement*> measure
 
 Sensor::~Sensor() {}
 
-vector<Measurement*> *getMeasurements() const
-{
-    return &measurements;
-}
-
-double Sensor::getLongitude () const
+double Sensor::getLongitude () 
 {
     return longitude;
 }
 
-double Sensor::getLatitude () const
+double Sensor::getLatitude () 
 {
     return latitude;
 }
 
-string Sensor::getID () const
+string Sensor::getID()
 {
     return sensorID;
 }
 
-bool Sensor::getReliability () const
+bool Sensor::getReliability () 
 {
     return isReliable;
 }
@@ -42,4 +36,8 @@ bool Sensor::getReliability () const
 void Sensor::setReliability( bool reliability )
 {
     this->isReliable = reliability;
+}
+
+void Sensor::addMeasurement(Measurement* measurement){
+    measurements.push_back(measurement);
 }

@@ -42,6 +42,8 @@ public:
     //-------------------------------------------- Constructeurs - destructeur
         Measurement (string timestamp, double valueO3, double valueSO2, double valueNO2, double valuePM10 );
 
+        Measurement(){};
+
         ~Measurement ( );
         
     //------------------------------------------------------------------ PRIVE
