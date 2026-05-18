@@ -158,7 +158,7 @@ void Data::loadData()
     }
 }
 
-vector<Sensor> Data ::getSensors()
+unordered_map<string, Sensor*> Data::getSensors()
 {
     return sensors;
 }

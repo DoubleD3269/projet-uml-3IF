@@ -35,7 +35,7 @@ class Data
 public:
 //----------------------------------------------------- Méthodes publiques
 
-    vector<Sensor> getSensors();
+    unordered_map<string, Sensor*> getSensors();
 
     vector<AirCleaner> getCleaners();
 
