@@ -28,7 +28,7 @@ public:
     double meanQuality(double lon, double lat, double radius, string startDate, string endDate);
     // Compute the mean quality of the air between the startDate and the endDate, in an area
 
-    double meanQuality(double lon, double lat, double radius, string date);
+    double meanQualityAtMoment(double lon, double lat, double radius, string date);
     // Compute the mean quality of the air at a given date in an area within a certain radius
 
     double quality(double lon, double lat, string date);
@@ -52,7 +52,11 @@ public:
 protected:
     //----------------------------------------------------- Attributs et méthodes protégés
     Data data;
-    double Distance(double lat1, double lon1, double lat2, double lon2) const;
+
+    double distance(double lat1, double lon1, double lat2, double lon2) const;
+    double mean(const vector<double> &values) const;
+    int subIndex(double val, double s1, double s2, double s3, double s4, double s5) const;
+    int atmoIndex(double o3, double so2, double no2, double pm10) const;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Controller>
