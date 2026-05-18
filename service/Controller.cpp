@@ -13,7 +13,7 @@ Controller::Controller()
 
 Controller::~Controller() {}
 
-double Distance(double lat1, double lon1, double lat2, double lon2) const
+double Controller::Distance(double lat1, double lon1, double lat2, double lon2) const
 {
     const double R = 6371.0; // Earth radius in km
     double dLat = (lat2 - lat1) * M_PI / 180.0;
@@ -21,6 +21,36 @@ double Distance(double lat1, double lon1, double lat2, double lon2) const
     double a = sin(dLat / 2) * sin(dLat / 2) + cos(lat1 * M_PI / 180.0) * cos(lat2 * M_PI / 180.0) * sin(dLon / 2) * sin(dLon / 2);
     double c = 2 * atan2(sqrt(a), sqrt(1 - a));
     return R * c;
+}
+
+int Controller::getAtmo(double val, vector<double>& thresholds) const
+{
+    for ( int i = 0 ; i < thresholds.size() ; i++ )
+    {
+        if ( value < thresholds[i] ) return i + 1;
+    }
+    return 10;
+}
+
+int Controller::IQA(Measurement m) const
+{
+    double O3 = m.getO3();
+    double SO2 = m.getSO2();
+    double NO2 = m.getNO2();
+    double PM10 = m.getPM10();
+
+    // Upper bound of each index 1-9, index 10 is >= last value
+    vector<double> O3_t = {30, 55, 80, 105, 130, 150, 180, 210, 240};
+    vector<double> SO2_t = {40, 80, 120, 160, 200, 250, 300, 400, 500};
+    vector<double> NO2_t = {30, 55, 85, 110, 135, 165, 200, 275, 400};
+    vector<double> PM10_t = {7,  14, 21, 28,  35,  42,  50,  65,  80};
+
+    int atmoO3   = getAtmo(O3, O3_t);
+    int atmoSO2  = getAtmo(SO2, SO2_t);
+    int atmoNO2  = getAtmo(NO2, NO2_t);
+    int atmoPM10 = getAtmo(PM10, PM10_t);
+
+    return max({atmoO3, atmoSO2, atmoNO2, atmoPM10});
 }
 
 double Controller::quality(double lon, double lat, string date)
@@ -47,7 +77,7 @@ double Controller::quality(double lon, double lat, string date)
         for (auto measure: ms) {
             if ( measure.getTimestamp() == date )
             {
-                return 0.0; // Return quality
+                return IQA( measure ); // Return quality
             }
         }
     }

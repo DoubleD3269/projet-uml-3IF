@@ -52,7 +52,15 @@ public:
 protected:
     //----------------------------------------------------- Attributs et méthodes protégés
     Data data;
-    double Distance(double lat1, double lon1, double lat2, double lon2) const;
+
+    double Distance(double lat1, double lon1, double lat2, double lon2) const; 
+    // Compute the distance between two points in (longitude, latitude)
+    
+    int IQA(Measurement m) const; 
+    // Compute Air Quality of a measurement, return the worst ATMO index between the four measurements (O3, SO2, NO2, PM10)
+    
+    int getAtmo(double val, vector<double>& thresholds) const;
+    // return the ATMO index, given the thresholds and the value 
 };
 
 //-------------------------------- Autres définitions dépendantes de <Controller>
