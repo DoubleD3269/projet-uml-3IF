@@ -33,7 +33,7 @@ public:
         double getNO2() const;
         // Return the value of the NO2 measurement
 
-        double getPM1O() const;
+        double getPM10() const;
         // Return the value of the PM10 measurement
 
         string getTimestamp() const;

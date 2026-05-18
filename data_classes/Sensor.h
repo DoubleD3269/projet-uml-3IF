@@ -5,10 +5,9 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Measurement.h"
-#include <string>
 #include <vector>
 
-using std::string;
+using namespace std;
 
 //------------------------------------------------------------- Constantes
 

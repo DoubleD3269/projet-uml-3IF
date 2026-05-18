@@ -1,6 +1,6 @@
 #include "Controller.h"
-#include "Sensor.h"
-#include "./data_classes/Data.h"
+#include "../data_classes/Sensor.h"
+#include "../data_classes/Data.h"
 #include <iostream>
 #include <bits/stdc++.h>
 #include <cmath>
@@ -10,7 +10,7 @@ using namespace std;
 
 Controller::Controller()
 {
-    data = new Data();
+    data = Data();
 }
 
 Controller::~Controller() {}
@@ -30,8 +30,7 @@ int Controller::getAtmo(double val, vector<double> &thresholds) const
 {
     for (int i = 0; i < thresholds.size(); i++)
     {
-        if (value < thresholds[i])
-            return i + 1;
+        if ( val < thresholds[i] ) return i + 1;
     }
     return 10;
 }
@@ -59,36 +58,30 @@ int Controller::IQA(Measurement m) const
 
 double Controller::quality(double lon, double lat, string date)
 {
-    Sensor s = data.sensors.begin();
-    if (s != NULL)
-    {
-        Sensor near_s = s;
-        double diff = distance(near_s.getLatitude(), near_s.getLongitude(), lat, lon);
-        double dist;
-        s++;
-        // Find the closest sensor
-        for (s; s != s.end(); s++)
-        {
-            dist = distance(s.getLatitude(), s.getLongitude(), lat, lon);
-            if (dist < diff)
-            {
-                diff = dist;
-                near_s = s;
-            }
-        }
+    unordered_map<Sensor> s = data.getSensors();
 
-        // Find the measurement at the given date
-        ms = near_s.getMeasurements();
-        for (auto measure : ms)
-        {
-            if (measure.getTimestamp() == date)
-            {
-                return IQA(measure); // Return quality
-            }
+    Sensor near_s = s[0];
+    double diff = distance(near_s.getLatitude(), near_s.getLongitude(), lat, lon);
+    double dist;
+    s++;
+    // Find the closest sensor
+    for ( int i = 1 ; i < s.size() ; i++ )
+    {
+        dist = distance(s[i].getLatitude(), s.getLongitude(), lat, lon );
+        if ( dist < diff ) {
+            diff = dist;
+            near_s = s[i];
         }
     }
-    else
-        cout << "Sensors empty" << endl;
+
+    // Find the measurement at the given date
+    auto ms = near_s.getMeasurements();
+    for (auto measure: ms) {
+        if ( measure.getTimestamp() == date )
+        {
+            return IQA( measure ); // Return quality
+        }
+    }
 }
 
 double Controller::meanQuality(double lon, double lat, double radius, string startDate, string endDate)

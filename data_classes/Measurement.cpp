@@ -28,7 +28,7 @@ double Measurement::getNO2() const
     return valueNO2;
 }
 
-double Measurement::getPM1O() const
+double Measurement::getPM10() const
 {
     return valuePM10;
 }
