@@ -30,11 +30,10 @@ using namespace std;
 //{
 //} //----- Fin de Méthode
 
-
 //------------------------------------------------- Surcharge d'opérateurs
 
 //-------------------------------------------- Constructeurs - destructeur
-Data::Data ( )
+Data::Data()
 // Algorithme :
 //
 {
@@ -44,8 +43,7 @@ Data::Data ( )
     loadData();
 } //----- Fin de Data
 
-
-Data::~Data ( )
+Data::~Data()
 // Algorithme :
 //
 {
@@ -54,24 +52,28 @@ Data::~Data ( )
 #endif
 } //----- Fin de ~Data
 
-
-
-
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-void Data::loadData(){
+void Data::loadData()
+{
     // Lecture de sensors.csv et measurements.csv
     ifstream f_sensors("../dataset/sensors.csv");
-    //static_assert((f_sensors.is_open()==1),"sensors.csv not found");
+    // static_assert((f_sensors.is_open()==1),"sensors.csv not found");
     ifstream f_measurements("../dataset/measurements.csv");
-    //assert(f_measurements.is_open(),"measurements.csv not found");
+    // assert(f_measurements.is_open(),"measurements.csv not found");
 
     while (!f_measurements.eof())
 
-    
+        sensors.push_back(); // Insert at the end efficiently
+}
 
+vector<Sensor> Data ::getSensors()
+{
+    return sensors;
+}
 
-    sensors.push_back(); // Insert at the end efficiently
-
+vector<AirCleaner> Data ::getCleaners()
+{
+    return cleaners;
 }
