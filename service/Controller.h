@@ -32,8 +32,8 @@ public:
     // Compute the mean quality of the air at a given date in an area within a certain radius
 
     double quality(double lon, double lat, string date);
-    // Compute the quality of the air in an area at a given date
-
+    // Compute the quality of the air in an area at a given date. Find the closest sensor
+    
     vector<string> rankSensors(string sensorID);
     // Rank every sensor considering their last entry. Calculate the squared difference with the given sensor's last entry
 
