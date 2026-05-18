@@ -6,7 +6,7 @@
 using namespace std;
 #include <vector>
 #include <string>
-#include "../data_classes/Data.h"
+#include "./data_classes/Data.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -25,7 +25,7 @@ class Controller
 public:
     //----------------------------------------------------- Méthodes publiques
 
-    double meanQuality(double lon, double lat, double radius, string startDate, string endDate);
+    double meanQualityOverPeriod(double lon, double lat, double radius, string startDate, string endDate);
     // Compute the mean quality of the air between the startDate and the endDate, in an area
 
     double meanQualityAtMoment(double lon, double lat, double radius, string date);
@@ -33,7 +33,7 @@ public:
 
     double quality(double lon, double lat, string date);
     // Compute the quality of the air in an area at a given date. Find the closest sensor
-    
+
     vector<string> rankSensors(string sensorID);
     // Rank every sensor considering their last entry. Calculate the squared difference with the given sensor's last entry
 
@@ -53,21 +53,15 @@ protected:
     //----------------------------------------------------- Attributs et méthodes protégés
     Data data;
 
-<<<<<<< HEAD
+    int IQA(Measurement m) const;
+    // Compute Air Quality of a measurement, return the worst ATMO index between the four measurements (O3, SO2, NO2, PM10)
+
+    int getAtmo(double val, vector<double> &thresholds) const;
+    // return the ATMO index, given the thresholds and the value
     double distance(double lat1, double lon1, double lat2, double lon2) const;
     double mean(const vector<double> &values) const;
     int subIndex(double val, double s1, double s2, double s3, double s4, double s5) const;
     int atmoIndex(double o3, double so2, double no2, double pm10) const;
-=======
-    double Distance(double lat1, double lon1, double lat2, double lon2) const; 
-    // Compute the distance between two points in (longitude, latitude)
-    
-    int IQA(Measurement m) const; 
-    // Compute Air Quality of a measurement, return the worst ATMO index between the four measurements (O3, SO2, NO2, PM10)
-    
-    int getAtmo(double val, vector<double>& thresholds) const;
-    // return the ATMO index, given the thresholds and the value 
->>>>>>> 9fa15735012be5b0a82dee0c903d0f7177f340b8
 };
 
 //-------------------------------- Autres définitions dépendantes de <Controller>
