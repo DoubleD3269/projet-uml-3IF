@@ -41,7 +41,7 @@ public:
 
     vector<AirCleanerProvider> getProviders();
 
-    vector<Individual> getIndividuals();
+    unordered_map<string, Individual*> getIndividuals();
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -62,7 +62,7 @@ protected:
 //----------------------------------------------------- Attributs protégés
     unordered_map<string, Sensor*> sensors;
     vector<AirCleaner> cleaners;
-    vector<Individual> individuals;
+    unordered_map<string, Individual*> individuals;
     vector<AirCleanerProvider> providers;
 
 };
