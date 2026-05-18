@@ -39,8 +39,13 @@ public:
         string getTimestamp() const;
         // Return the timestamp
 
+        friend ostream & operator << (ostream & out, const Measurement & m);
+        // Allows the display of a measurement in ostream
+
     //-------------------------------------------- Constructeurs - destructeur
         Measurement (string timestamp, double valueO3, double valueSO2, double valueNO2, double valuePM10 );
+
+        Measurement(){};
 
         ~Measurement ( );
         

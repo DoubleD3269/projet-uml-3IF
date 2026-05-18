@@ -12,6 +12,7 @@
 //--------------------------------------------------- Interfaces utilisées
 using namespace std;
 #include <vector>
+#include <unordered_map>
 
 #include "Sensor.h"
 #include "AirCleaner.h"
@@ -34,13 +35,13 @@ class Data
 public:
 //----------------------------------------------------- Méthodes publiques
 
-    vector<Sensor> getSensors();
+    unordered_map<string, Sensor*> getSensors();
 
     vector<AirCleaner> getCleaners();
 
     vector<AirCleanerProvider> getProviders();
 
-    vector<Individual> getIndividuals();
+    unordered_map<string, Individual*> getIndividuals();
 
 //------------------------------------------------- Surcharge d'opérateurs
 
@@ -56,12 +57,12 @@ public:
 protected:
 //----------------------------------------------------- Méthodes protégées
     void loadData();
-    // Reads the .csv dataset to create all data objects
+    // Reads the .csv dataset to create all data objects and add them to the Data object.
 
 //----------------------------------------------------- Attributs protégés
-    vector<Sensor> sensors;
+    unordered_map<string, Sensor*> sensors;
     vector<AirCleaner> cleaners;
-    vector<Individual> individuals;
+    unordered_map<string, Individual*> individuals;
     vector<AirCleanerProvider> providers;
 
 };

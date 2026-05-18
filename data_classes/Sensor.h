@@ -38,6 +38,8 @@ public:
 
         void setReliability( bool reliability );
 
+        void addMeasurement(Measurement*);
+
     //-------------------------------------------- Constructeurs - destructeur
         Sensor ( string id, double lon, double lat, vector<Measurement*> measurements );
 
