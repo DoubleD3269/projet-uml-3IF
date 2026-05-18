@@ -6,7 +6,7 @@
 using namespace std;
 #include <vector>
 #include <string>
-#include "./data_classes/Data.h"
+#include "../data_classes/Data.h"
 
 //------------------------------------------------------------- Constantes
 

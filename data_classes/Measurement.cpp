@@ -37,3 +37,9 @@ string Measurement::getTimestamp() const
 {
     return timestamp;
 }
+
+ostream & operator << (ostream & out, const Measurement & m)
+{
+    out << m.timestamp << " : O3 = " << m.valueO3 << ", SO2 = " << m.valueSO2 << ", NO2 = " << m.valueNO2 << ", PM10 = " << m.valuePM10;
+    return out;
+}
