@@ -37,9 +37,9 @@ public:
 
     unordered_map<string, Sensor*> getSensors();
 
-    vector<AirCleaner> getCleaners();
+    unordered_map<string, AirCleaner*> getCleaners();
 
-    vector<AirCleanerProvider> getProviders();
+    unordered_map<string, AirCleanerProvider*> getProviders();
 
     unordered_map<string, Individual*> getIndividuals();
 
@@ -61,9 +61,9 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
     unordered_map<string, Sensor*> sensors;
-    vector<AirCleaner> cleaners;
+    unordered_map<string, AirCleaner*> cleaners;
     unordered_map<string, Individual*> individuals;
-    vector<AirCleanerProvider> providers;
+    unordered_map<string, AirCleanerProvider*> providers;
 
 };
 

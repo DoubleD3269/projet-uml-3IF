@@ -4,6 +4,10 @@
 
 AirCleanerProvider::AirCleanerProvider() {};
 
+AirCleanerProvider::AirCleanerProvider(std::string id){
+    providerId = id;
+}
+
 AirCleanerProvider::AirCleanerProvider(std::string providerId, std::vector<AirCleaner*> cleaners)
     : providerId(providerId), cleaners(cleaners){
 }
@@ -13,4 +17,8 @@ AirCleanerProvider::~AirCleanerProvider(){
 
 std::vector<AirCleaner*> AirCleanerProvider::getCleaners(){
     return cleaners;
+}
+
+void AirCleanerProvider::addCleaner(AirCleaner* cleaner){
+    cleaners.push_back(cleaner);
 }

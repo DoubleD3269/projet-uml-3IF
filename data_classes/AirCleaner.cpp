@@ -4,7 +4,7 @@
 
 AirCleaner::AirCleaner(){}
 
-AirCleaner::AirCleaner(std::string cleanerID, double longitude, double latitude, long startTime, long endTime, AirCleanerProvider* provider)
+AirCleaner::AirCleaner(std::string cleanerID, double longitude, double latitude, std::string startTime, std::string endTime, AirCleanerProvider* provider)
     : cleanerID(cleanerID), longitude(longitude), latitude(latitude), startTime(startTime), endTime(endTime), provider(provider) {
 }
 
@@ -16,10 +16,14 @@ std::pair<double, double> AirCleaner::getCoords(){
     return coords;
 }
 
-long AirCleaner::getStart(){
+std::string AirCleaner::getStart(){
     return startTime;
 }
 
-long AirCleaner::getEnd(){
+std::string AirCleaner::getEnd(){
     return endTime;
+}
+
+std::string AirCleaner::setProvider(AirCleanerProvider* newprov){
+    provider = newprov;
 }

@@ -71,6 +71,12 @@ void Data::loadData()
     ifstream f_users("../dataset/users.csv");
     // assert(f_users.is_open(),"users.csv not found");
 
+    ifstream f_cleaners("../dataset/cleaners.csv");
+    // assert(f_cleaners.is_open(),"cleaners.csv not found");
+
+    ifstream f_providers("../dataset/providers.csv");
+    // assert(f_providers.is_open(),"providers.csv not found");
+
     //Loading of the sensors
     string sensor_s;
     while (getline (f_sensors, sensor_s)) {
@@ -80,8 +86,8 @@ void Data::loadData()
         string id;
 
         getline(ss, id, ';');
-        getline(ss, longitude_s, ';');
         getline(ss, latitude_s, ';');
+        getline(ss, longitude_s, ';');
 
         vector<Measurement*> measurements;
 
@@ -89,6 +95,57 @@ void Data::loadData()
 
         sensors.insert({id, sensor});
 
+    }
+
+    //Loading of the cleaners
+    string cleaner_s;
+    while (getline (f_cleaners, cleaner_s)) { //For each line of the file
+        std::stringstream ss(cleaner_s);
+        string cleaner_id;
+        string latitude_s;
+        string longitude_s;
+        string startTime;
+        string endTime;
+
+        //We split the line using the semicolons as separators and put the values in variables
+        getline(ss, cleaner_id, ';');
+        getline(ss, latitude_s, ';');
+        getline(ss, longitude_s, ';');
+        getline(ss, startTime, ';');
+        getline(ss, endTime, ';');
+
+        AirCleanerProvider* provider = nullptr;
+
+        AirCleaner* cleaner = new AirCleaner(cleaner_id,stod(longitude_s),stod(latitude_s),startTime,endTime,provider);
+        cleaners.insert({cleaner_id,cleaner});
+        
+    }
+
+    //Loading of the providers
+    string provider_s;
+    while (getline (f_providers, provider_s)) { //For each line of the file
+        std::stringstream ss(provider_s);
+        string provider_id;
+        string cleaner_id;
+
+        //We split the line using the semicolons as separators and put the values in variables
+        getline(ss, provider_id, ';');
+        getline(ss, cleaner_id, ';');
+
+        AirCleanerProvider* provider;
+
+        //If the provider doesn't exist yet, we create it and it to the providers
+        if (providers.count(provider_id)==0){
+            provider = new AirCleanerProvider(provider_id);
+            providers.insert({provider_id, provider});
+        }
+        //If it exists, we get it from individuals
+        else{
+            provider = providers[provider_id];
+        }
+        //We add the cleaner to the list of the provider
+        provider->addCleaner(cleaners[cleaner_id]);
+        cleaners[cleaner_id]->setProvider(provider);
     }
 
     //Loading of the users
@@ -195,7 +252,7 @@ unordered_map<string, Sensor*> Data::getSensors()
     return sensors;
 }
 
-vector<AirCleaner> Data ::getCleaners()
+unordered_map<string, AirCleaner*> Data::getCleaners()
 {
     return cleaners;
 }
