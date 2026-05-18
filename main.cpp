@@ -26,7 +26,7 @@ int main() {
         cout << "2: Add a private sensor" << endl;
         cout << "Agency member :" << endl;
         cout << "3: Classify a sensor as unreliable" << endl;
-        cout << "AirCleaner Provider :" << endl;
+        cout << "Air Cleaner Provider :" << endl;
         cout << "4: Calculate the radius of a cleaned zone"<<endl;
         cout << "5: Calculate the improvement in air quality"<< endl;
         cin >> choice;
